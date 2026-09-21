@@ -20,17 +20,8 @@ const youtubeThumbnail = (youtubeId: string) =>
   `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
 
 const tracks: Track[] = [
-  {
+    {
     id: 1,
-    title: 'somewhere between heaven and hell',
-    desc: 'Hovering at the threshold — neither peaceful nor terrifying.',
-    tags: ['Dark', 'Horror'],
-    duration: '6:42',
-    youtubeId: 'QS2Q1UunBtY',
-    audioSrc: heavenandhellAudio,
-  },
-  {
-    id: 2,
     title: 'the woods feel different tonight',
     desc: 'Something moved between the trees. You heard it too.',
     tags: ['Horror', 'Dark', 'Silent Hill'],
@@ -38,6 +29,16 @@ const tracks: Track[] = [
     youtubeId: 'hiJaobo5_CM',
     img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=340&fit=crop&auto=format',
   },
+  {
+    id: 2,
+    title: 'somewhere between heaven and hell',
+    desc: 'Hovering at the threshold — neither peaceful nor terrifying.',
+    tags: ['Dark', 'Horror'],
+    duration: '6:42',
+    youtubeId: 'QS2Q1UunBtY',
+    audioSrc: heavenandhellAudio,
+  },
+
   {
     id: 3,
     title: 'a world beyond reality',
@@ -127,7 +128,40 @@ const ytVideos: YouTubeVideo[] = [
     youtubeId: 'olgHdZmqLxw',
     url: 'https://youtu.be/olgHdZmqLxw?si=0g6k1r7J8X9n5j2K',
   },
+  {
+    id: 5,
+    title: 'running in a dream',
+    tag: 'Dark Ambient',
+    duration: '8:12',
+    youtubeId: 'kNup5-ogpyI',
+    url: 'https://youtu.be/kNup5-ogpyI',
+  },
+  {
+    id: 6,
+    title: 'a moment of peace',
+    tag: 'Game Inspired',
+    duration: '5:37',
+    youtubeId: 'MpUh3L1pQW4',
+    url: 'https://youtu.be/MpUh3L1pQW4',
+  },
+  {
+    id: 7,
+    title: 'the road to silent hill',
+    tag: 'Game Inspired',
+    duration: '6:23',
+    youtubeId: 'SZ8to96OV50',
+    url: 'https://youtu.be/SZ8to96OV50',
+  },
 ]
+
+const getDailyFeaturedVideo = () => {
+  const today = new Date()
+  const dayNumber = Math.floor(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) / 86_400_000)
+  return ytVideos[dayNumber % ytVideos.length]
+}
+
+const featuredVideo = getDailyFeaturedVideo()
+const featuredTrack = tracks.find(track => track.youtubeId === featuredVideo.youtubeId) ?? tracks[0]
 
 const FILTER_TAGS = ['All', 'Dark', 'Horror', 'Game Inspired', 'Silent Hill', 'Zelda', 'Other']
 
@@ -632,11 +666,11 @@ export default function App() {
         <div className="max-w-5xl mx-auto">
           <SectionLabel>Featured Track</SectionLabel>
           <div className="grid md:grid-cols-2 gap-0 border border-[--border]">
-            <div className="relative min-h-72 overflow-hidden">
+            <div className="group relative min-h-72 overflow-hidden">
               <img
-                src={youtubeThumbnail(tracks[0].youtubeId!)}
-                alt="somewhere between heaven and hell"
-                className="w-full h-full object-cover grayscale opacity-50"
+                src={youtubeThumbnail(featuredVideo.youtubeId!)}
+                alt={featuredVideo.title}
+                className="w-full h-full object-cover grayscale opacity-50 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-80"
                 style={{ minHeight: '288px' }}
               />
               <div className="absolute inset-0 bg-linear-to-r from-transparent to-[#0d0d0d] hidden md:block" />
@@ -655,24 +689,24 @@ export default function App() {
                   className="font-mono-display text-2xl mt-3 leading-tight"
                   style={{ color: 'var(--foreground)' }}
                 >
-                  somewhere between<br />heaven and hell
+                  {featuredVideo.title}
                 </h2>
               </div>
               <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
-                An eerie ambient track hovering at the threshold between darkness and serenity. Inspired by the liminal spaces of Silent Hill.
+                {featuredTrack.desc}
               </p>
               <div className="flex items-center gap-2 font-mono-display text-[10px]" style={{ color: 'var(--muted-foreground)' }}>
-                <span>6:42</span>
+                <span>{featuredVideo.duration}</span>
                 <span>·</span>
-                <span>Dark / Silent Hill</span>
+                <span>{featuredTrack.tags.join(' / ')}</span>
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={() => handlePlay(tracks[0])}
+                  onClick={() => handlePlay(featuredTrack)}
                   className="font-mono-display text-xs tracking-[0.15em] uppercase px-6 py-3 border border-[--foreground] hover:bg-[--foreground] hover:text-[--background] transition-all duration-300"
                   style={{ color: 'var(--foreground)' }}
                 >
-                  {playingTrack?.id === 1 && playerPlaying ? '⏸ Pause' : '▶ Play Preview'}
+                  {playingTrack?.id === featuredTrack.id && playerPlaying ? '⏸ Pause' : '▶ Play Preview'}
                 </button>
                 <a
                   href={YOUTUBE_URL}
