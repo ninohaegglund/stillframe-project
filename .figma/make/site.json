@@ -1,0 +1,10 @@
+{
+  "description": "Explore and stream curated ambient and cinematic soundscapes designed to enhance focus, relaxation, and creativity for all listeners.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
