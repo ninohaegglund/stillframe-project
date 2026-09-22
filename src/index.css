@@ -23,17 +23,17 @@
 
 :root {
   --background: #080808;
-  --foreground: #c4c4be;
+  --foreground: #dfe0d9;
   --card: #0d0d0d;
-  --card-foreground: #c4c4be;
-  --primary: #c4c4be;
+  --card-foreground: #dfe0d9;
+  --primary: #dfe0d9;
   --primary-foreground: #080808;
   --secondary: #141414;
-  --secondary-foreground: #c4c4be;
+  --secondary-foreground: #dfe0d9;
   --muted: #141414;
-  --muted-foreground: #5a5a54;
+  --muted-foreground: #a3a59d;
   --accent: #3d5c3a;
-  --accent-foreground: #a8c8a4;
+  --accent-foreground: #c8d9c2;
   --border: #1c1c1c;
   --ring: #3d5c3a;
   --radius: 2px;
