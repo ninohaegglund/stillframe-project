@@ -22,11 +22,11 @@ const youtubeThumbnail = (youtubeId: string) =>
 const tracks: Track[] = [
     {
     id: 1,
-    title: 'the woods feel different tonight',
-    desc: 'Something moved between the trees. You heard it too.',
-    tags: ['Horror', 'Dark', 'Silent Hill'],
+    title: 'the leaves are falling',
+    desc: 'cozy autumn vibes with a hint of unease.',
+    tags: ['Horror', 'Dark'],
     duration: '5:18',
-    youtubeId: 'hiJaobo5_CM',
+    youtubeId: 'XPrKsdm5WtA',
     img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=340&fit=crop&auto=format',
   },
   {
@@ -106,11 +106,11 @@ const ytVideos: YouTubeVideo[] = [
   },
   {
     id: 2,
-    title: 'the woods feel different tonight',
-    tag: 'Horror',
+    title: 'the leaves are falling',
+    tag: 'Dark Ambient',
     duration: '5:18',
-    youtubeId: 'hiJaobo5_CM',
-    url: 'https://youtu.be/hiJaobo5_CM?si=V9J5X8Q7R4N2K1L3',
+    youtubeId: 'XPrKsdm5WtA',
+    url: 'https://youtu.be/XPrKsdm5WtA?si=V9J5X8Q7R4N2K1L3',
   },
   {
     id: 3,
